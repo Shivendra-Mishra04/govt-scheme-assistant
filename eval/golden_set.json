@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "question": "What is the scholarship amount for a B.Tech student in 4th year?",
+    "type": "answerable",
+    "expected_sections": ["7"],
+    "must_include": ["20,000", "20000"],
+    "notes": "Section 7 states graduation level (4th year B.Tech/B.Eng) gets Rs 20,000"
+  },
+  {
+    "id": 2,
+    "question": "What is the family income limit to be eligible for this scholarship?",
+    "type": "answerable",
+    "expected_sections": ["4"],
+    "must_include": ["4.5", "450000", "4,50,000"],
+    "notes": "Section 4, clause vii: family income up to Rs 4.5 lakh per annum"
+  },
+  {
+    "id": 3,
+    "question": "What percentile is required in Class XII to apply?",
+    "type": "answerable",
+    "expected_sections": ["4"],
+    "must_include": ["80"],
+    "notes": "Section 4, clause i: above 80th percentile among successful candidates"
+  },
+  {
+    "id": 4,
+    "question": "What is the minimum attendance percentage required for scholarship renewal?",
+    "type": "answerable",
+    "expected_sections": ["4"],
+    "must_include": ["75"],
+    "notes": "Section 4, clause viii: at least 75% attendance for renewal"
+  },
+  {
+    "id": 5,
+    "question": "What percentage marks are needed in annual examination for renewal?",
+    "type": "answerable",
+    "expected_sections": ["4"],
+    "must_include": ["50"],
+    "notes": "Section 4, clause viii: at least 50% marks in annual examination for renewal"
+  },
+  {
+    "id": 6,
+    "question": "How many total fresh scholarships are available each year?",
+    "type": "answerable",
+    "expected_sections": ["2"],
+    "must_include": ["82,000", "82000"],
+    "notes": "Section 2: maximum of 82,000 fresh scholarships per annum"
+  },
+  {
+    "id": 7,
+    "question": "What percentage of scholarships are reserved for girls?",
+    "type": "answerable",
+    "expected_sections": ["3", "5"],
+    "must_include": ["50"],
+    "notes": "Section 3: 50% earmarked for girls"
+  },
+  {
+    "id": 8,
+    "question": "What is the SC reservation percentage?",
+    "type": "answerable",
+    "expected_sections": ["5"],
+    "must_include": ["15"],
+    "notes": "Section 5: 15% for SC"
+  },
+  {
+    "id": 9,
+    "question": "What is the ST reservation percentage?",
+    "type": "answerable",
+    "expected_sections": ["5"],
+    "must_include": ["7.5"],
+    "notes": "Section 5: 7.5% for ST"
+  },
+  {
+    "id": 10,
+    "question": "What is the OBC reservation percentage?",
+    "type": "answerable",
+    "expected_sections": ["5"],
+    "must_include": ["27"],
+    "notes": "Section 5: 27% for OBC"
+  },
+  {
+    "id": 11,
+    "question": "In what ratio are scholarships distributed among the Humanities, Science and Commerce streams?",
+    "type": "answerable",
+    "expected_sections": ["3"],
+    "must_include": ["3:3:1"],
+    "notes": "Section 3: distributed in the ratio of 3:3:1"
+  },
+  {
+    "id": 12,
+    "question": "Where should students apply for this scholarship?",
+    "type": "answerable",
+    "expected_sections": ["6"],
+    "must_include": ["National Scholarships Portal", "NSP", "scholarships.gov.in"],
+    "notes": "Section 6: apply online on National Scholarships Portal"
+  },
+  {
+    "id": 13,
+    "question": "How is the scholarship amount paid to students?",
+    "type": "answerable",
+    "expected_sections": ["8"],
+    "must_include": ["DBT", "Direct Benefit Transfer"],
+    "notes": "Section 8: paid through DBT (Direct Benefit Transfer)"
+  },
+  {
+    "id": 14,
+    "question": "Which platform is used for payment tracking?",
+    "type": "answerable",
+    "expected_sections": ["8"],
+    "must_include": ["PFMS", "Public Financial Management System"],
+    "notes": "Section 8: PFMS - Know Your Payment"
+  },
+  {
+    "id": 15,
+    "question": "Are distance education students eligible for this scholarship?",
+    "type": "answerable",
+    "expected_sections": ["4"],
+    "must_include": ["not", "regular"],
+    "notes": "Section 4, clause ii: only regular courses, not distance or correspondence"
+  },
+  {
+    "id": 16,
+    "question": "Are diploma students eligible for this scholarship?",
+    "type": "answerable",
+    "expected_sections": ["4"],
+    "must_include": ["not", "diploma"],
+    "notes": "Section 4, clause ii: diploma courses not eligible"
+  },
+  {
+    "id": 17,
+    "question": "What is the exact application deadline for this year?",
+    "type": "unanswerable",
+    "expected_sections": [],
+    "must_include": [],
+    "notes": "Deadlines vary by year and are not in the guidelines PDF"
+  },
+  {
+    "id": 18,
+    "question": "Is this scholarship available for students studying abroad?",
+    "type": "unanswerable",
+    "expected_sections": [],
+    "must_include": [],
+    "notes": "Not covered in the guidelines"
+  },
+  {
+    "id": 19,
+    "question": "What is the scholarship amount for MBBS students in private foreign universities?",
+    "type": "unanswerable",
+    "expected_sections": [],
+    "must_include": [],
+    "notes": "Foreign universities not covered"
+  },
+  {
+    "id": 20,
+    "question": "What is the Prime Minister's direct phone number for scholarship queries?",
+    "type": "unanswerable",
+    "expected_sections": [],
+    "must_include": [],
+    "notes": "Not in the guidelines; contact is through official grievance portal"
+  }
+]

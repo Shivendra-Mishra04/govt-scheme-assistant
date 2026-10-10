@@ -1,0 +1,9 @@
+faiss-cpu
+sentence-transformers
+numpy
+pypdf
+langchain-text-splitters
+flask
+openai
+python-dotenv
+pytest

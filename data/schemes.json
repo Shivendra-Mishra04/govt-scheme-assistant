@@ -1,0 +1,80 @@
+{
+  "scheme_name": "Pradhan Mantri Uchchatar Shiksha Protsahan (PM-USP)",
+  "scheme_id": "CSSS",
+  "full_name": "Central Sector Scheme of Scholarship for College and University Students",
+  "ministry": "Ministry of Education, Department of Higher Education",
+  "objective": "To provide financial support to meritorious students from economically weaker sections for pursuing higher education",
+  "source_section": "Section 1",
+
+  "eligibility_criteria": {
+    "percentile_threshold": 80.0,
+    "source_section": "Section 4, clause i",
+    "income_threshold": 450000,
+    "source_section_income": "Section 4, clause vii",
+    "allowed_course_modes": ["regular"],
+    "excluded_course_modes": ["distance", "correspondence"],
+    "source_section_mode": "Section 4, clause ii",
+    "excluded_course_types": ["diploma"],
+    "source_section_type": "Section 4, clause ii"
+  },
+
+  "renewal_criteria": {
+    "annual_exam_threshold": 50.0,
+    "attendance_threshold": 75.0,
+    "no_disciplinary_complaint": true,
+    "source_section": "Section 7 (renewal conditions)"
+  },
+
+  "scholarship_rates": {
+    "undergraduate_years_1_3": 12000,
+    "postgraduate": 20000,
+    "professional_5yr_years_1_3": 12000,
+    "professional_5yr_years_4_5": 20000,
+    "btech_beng_years_1_3": 12000,
+    "btech_beng_year_4": 20000,
+    "source_section": "Section 7",
+    "note": "For academic year 2021-22, rates were Rs 10,000 per annum for first three years"
+  },
+
+  "allocation": {
+    "total_fresh_scholarships": 82000,
+    "girls_quota": "50%",
+    "reservation_sc": "15%",
+    "reservation_st": "7.5%",
+    "reservation_obc": "27%",
+    "horizontal_disability": "5%",
+    "distribution_ratio": "3:3:1 (Technical stream : Medical stream : Others)",
+    "source_section": "Section 3 and Section 5"
+  },
+
+  "application_process": {
+    "portal": "National Scholarships Portal",
+    "portal_url": "www.scholarships.gov.in",
+    "mode": "Online only",
+    "source_section": "Section 6"
+  },
+
+  "payment": {
+    "method": "Direct Benefit Transfer (DBT)",
+    "platform": "PFMS (Public Financial Management System)",
+    "tracking": "Know Your Payment status on PFMS",
+    "source_section": "Section 8"
+  },
+
+  "grievance": {
+    "portal": "Centralized Public Grievance Redress and Monitoring System (CPGRAMS)",
+    "contact_email": "Contact through official channels",
+    "source_section": "Section 11"
+  },
+
+  "important_notes": [
+    "Scholarship can be continued if student changes college, provided the new institution has a valid AISHE code",
+    "Students not permanently debarred for delay, but must renew within the cut-off period",
+    "Verification: First at institution level, then by State Nodal Agency",
+    "Not available for distance education or correspondence courses",
+    "Not available for diploma courses"
+  ],
+
+  "last_verified": "2026-10-08",
+  "source_document": "pm-usp-csss-guidelines.pdf"
+}
