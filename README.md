@@ -1,5 +1,9 @@
 # Scheme Assistant (LLM Knowledge Assistant)
 
+![Eligibility checker result](docs/screenshot.png)
+
+![Question and answer with cited sources](docs/screenshot-ask.png)
+
 A retrieval-augmented question-answering assistant for the **PM-USP CSSS scholarship** (Ministry of Education, applicable 2022-23 onwards). It answers questions using only the official guidelines PDF, cites the section it used, and refuses when the document does not contain the answer. It also includes a rule-based eligibility checker, a Flask API with a web page, and an evaluation suite.
 
 ## How it works
@@ -9,7 +13,7 @@ A retrieval-augmented question-answering assistant for the **PM-USP CSSS scholar
 3. **Retrieve** (`src/rag.py`): the question is embedded with the bge query prefix and the top 4 chunks are returned. If the best score is below `MIN_SCORE` (0.35), the app refuses without calling the LLM.
 4. **Generate**: the full text of the 4 chunks and the question are sent to an LLM with a strict prompt: answer only from the context, cite `[Section N]`, otherwise say "I don't know...".
 5. **Grounded flag**: `grounded` is `False` when the score gate fires or when the model's answer is a refusal.
-6. **Eligibility** (`src/eligibility.py`): plain rules with thresholds read from `data/schemes.json`. No LLM is involved, so decisions are deterministic.
+6. **Eligibility** (`src/eligibility.py`): plain rules with thresholds read from `data/schemes.json`, each result citing the guideline clause it comes from. No LLM is involved, so decisions are deterministic. Fresh applications are checked against Section 4 clauses i to v. Renewals are checked against the ongoing conditions (clauses ii, iii and iv) plus the renewal criteria in clause viii (50% marks, 75% attendance, no disciplinary or criminal complaint). Class XII percentile and family income are not re-checked at renewal, because the guidelines require the income certificate only for fresh applicants. This is the checker's interpretation of the guidelines, not an official ruling.
 
 ```
 PDF guidelines
@@ -69,7 +73,7 @@ python -m src.app
 
 Open http://127.0.0.1:5000. In `.env`, set `LLM_BASE_URL`, `LLM_API_KEY` and `LLM_MODEL` for any OpenAI-compatible endpoint. Other settings: `EVAL_LLM_MODEL`, `EMBED_MODEL`, `TOP_K` (default 4) and `MIN_SCORE` (default 0.35).
 
-Tests: `python -m pytest` (21 eligibility tests).
+Tests: `python -m pytest` (30 eligibility tests).
 
 ## API
 
@@ -103,5 +107,6 @@ tests/
 - No conversation memory; each question is answered independently.
 - `MIN_SCORE` is hand-set and was never triggered by the test questions.
 - Small evaluation set, partly tuned during development.
+- The eligibility checker follows my reading of the guidelines. They do not say whether the income limit applies again at renewal, so the checker does not enforce it then. It also does not decide selection, which depends on merit, quotas and reservation.
 - Thinking models add latency, and free quotas limit how much can be run.
 - Guidelines are as of the PDF's publication; check the official portal for current rules.
