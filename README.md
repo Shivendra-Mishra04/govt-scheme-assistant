@@ -1,8 +1,8 @@
 # Scheme Assistant (LLM Knowledge Assistant)
 
-![Eligibility checker result](docs/screenshot.png)
-
 ![Question and answer with cited sources](docs/screenshot-ask.png)
+
+![Eligibility checker result](docs/screenshot.png)
 
 A retrieval-augmented question-answering assistant for the **PM-USP CSSS scholarship** (Ministry of Education, applicable 2022-23 onwards). It answers questions using only the official guidelines PDF, cites the section it used, and refuses when the document does not contain the answer. It also includes a rule-based eligibility checker, a Flask API with a web page, and an evaluation suite.
 
