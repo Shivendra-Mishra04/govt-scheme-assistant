@@ -15,7 +15,12 @@ A retrieval-augmented question-answering assistant for the **PM-USP CSSS scholar
 PDF guidelines
    -> section-aware chunking (26 chunks)
    -> bge-small embeddings -> FAISS index
-Question -> retrieve top 4 -> score gate (0.35) -> LLM with strict prompt -> answer + [Section N] citations
+
+Question
+   -> retrieve top 4 chunks
+   -> score gate (refuse below 0.35)
+   -> LLM with strict prompt
+   -> answer + [Section N] citations
 ```
 
 ## Stack
