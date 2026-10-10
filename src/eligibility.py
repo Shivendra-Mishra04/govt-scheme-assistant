@@ -39,6 +39,16 @@ def check_eligibility(profile):
             - gender (str)
             - category (str)
 
+    Interpretation used by this checker (Section 4 of the guidelines):
+        - Fresh application: clauses i to v (percentile, regular mode, not
+          diploma, recognized institution, no other scholarship, income).
+        - Renewal: the ongoing conditions (clauses ii, iii, iv) plus the
+          renewal criteria in clause viii (50% marks, 75% attendance, no
+          complaint). Percentile (clause i) is an entry criterion and is not
+          re-checked. Income is not re-checked because clause v requires the
+          income certificate only for fresh applicants; the guidelines do not
+          say whether the limit is re-applied at renewal.
+
     Returns:
         dict with keys:
             - eligible (bool)
@@ -78,9 +88,9 @@ def check_eligibility(profile):
 
     checks = []
 
-    # Fresh application rules
+    # Entry criterion: fresh applications only
     if not is_renewal:
-        # Rule 1: Percentile > 80
+        # Percentile > 80 (Section 4, clause i)
         percentile_threshold = scheme["eligibility_criteria"]["percentile_threshold"]
         percentile_passed = profile["class12_percentile"] > percentile_threshold
         checks.append({
@@ -90,81 +100,84 @@ def check_eligibility(profile):
             "guideline_section": "Section 4, clause i"
         })
 
-        # Rule 2: Regular course mode
-        mode_passed = profile["course_mode"] == "regular"
-        checks.append({
-            "rule": "Course must be regular (not distance or correspondence)",
-            "passed": mode_passed,
-            "detail": f"Your mode: {profile['course_mode']}",
-            "guideline_section": "Section 4, clause ii"
-        })
+    # Conditions checked for BOTH fresh applications and renewals
 
-        # Rule 3: Not diploma
-        type_passed = profile["course_type"] != "diploma"
-        checks.append({
-            "rule": "Course type must not be diploma",
-            "passed": type_passed,
-            "detail": f"Your course type: {profile['course_type']}",
-            "guideline_section": "Section 4, clause ii"
-        })
+    # Regular course mode (clause ii)
+    mode_passed = profile["course_mode"] == "regular"
+    checks.append({
+        "rule": "Course must be regular (not distance or correspondence)",
+        "passed": mode_passed,
+        "detail": f"Your mode: {profile['course_mode']}",
+        "guideline_section": "Section 4, clause ii"
+    })
 
-        # Rule 4: Institution recognized
-        institution_passed = profile["institution_recognized"]
-        checks.append({
-            "rule": "Institution must be recognized by AICTE or the respective regulatory body",
-            "passed": institution_passed,
-            "detail": "Recognized" if institution_passed else "Not recognized",
-            "guideline_section": "Section 4, clause iii"
-        })
+    # Not diploma (clause ii)
+    type_passed = profile["course_type"] != "diploma"
+    checks.append({
+        "rule": "Course type must not be diploma",
+        "passed": type_passed,
+        "detail": f"Your course type: {profile['course_type']}",
+        "guideline_section": "Section 4, clause ii"
+    })
 
-        # Rule 5: No other scholarship or fee waiver
-        other_scholarship_passed = not profile["availing_other_scholarship_or_fee_waiver"]
-        checks.append({
-            "rule": "Not availing any other merit scholarship, state scholarship, or fee waiver",
-            "passed": other_scholarship_passed,
-            "detail": "Availing other support" if not other_scholarship_passed else "Not availing other support",
-            "guideline_section": "Section 4, clause vi"
-        })
+    # Institution recognized (clause iii)
+    institution_passed = profile["institution_recognized"]
+    checks.append({
+        "rule": "Institution must be recognized by AICTE or the respective regulatory body",
+        "passed": institution_passed,
+        "detail": "Recognized" if institution_passed else "Not recognized",
+        "guideline_section": "Section 4, clause iii"
+    })
 
-        # Rule 6: Family income threshold
+    # No other scholarship or fee waiver (clause iv)
+    other_scholarship_passed = not profile["availing_other_scholarship_or_fee_waiver"]
+    checks.append({
+        "rule": "Not availing any other merit scholarship, state scholarship, or fee waiver",
+        "passed": other_scholarship_passed,
+        "detail": "Availing other support" if not other_scholarship_passed else "Not availing other support",
+        "guideline_section": "Section 4, clause iv"
+    })
+
+    # Family income threshold: fresh applications only (clause v)
+    if not is_renewal:
         income_threshold = scheme["eligibility_criteria"]["income_threshold"]
         income_passed = profile["family_income_per_year"] <= income_threshold
         checks.append({
             "rule": f"Family income not exceeding ₹{income_threshold:,} per annum",
             "passed": income_passed,
             "detail": f"Your family income: ₹{profile['family_income_per_year']:,}",
-            "guideline_section": "Section 4, clause vii"
+            "guideline_section": "Section 4, clause v"
         })
 
-    # Renewal-specific rules
+    # Renewal criteria (clause viii)
     if is_renewal:
-        # Rule 7: Annual exam >= 50%
+        # Annual exam >= 50%
         exam_threshold = scheme["renewal_criteria"]["annual_exam_threshold"]
         exam_passed = profile["annual_exam_percent"] >= exam_threshold
         checks.append({
             "rule": f"Annual examination result at least {exam_threshold}%",
             "passed": exam_passed,
             "detail": f"Your exam result: {profile['annual_exam_percent']}%",
-            "guideline_section": "Section 7 (renewal clause)"
+            "guideline_section": "Section 4, clause viii"
         })
 
-        # Rule 8: Attendance >= 75%
+        # Attendance >= 75%
         attendance_threshold = scheme["renewal_criteria"]["attendance_threshold"]
         attendance_passed = profile["attendance_percent"] >= attendance_threshold
         checks.append({
             "rule": f"Attendance at least {attendance_threshold}%",
             "passed": attendance_passed,
             "detail": f"Your attendance: {profile['attendance_percent']}%",
-            "guideline_section": "Section 7 (renewal clause)"
+            "guideline_section": "Section 4, clause viii"
         })
 
-        # Rule 9: No disciplinary or criminal complaint
+        # No disciplinary or criminal complaint
         discipline_passed = not profile["disciplinary_or_criminal_complaint"]
         checks.append({
             "rule": "No disciplinary or criminal complaint",
             "passed": discipline_passed,
             "detail": "Complaint exists" if not discipline_passed else "No complaints",
-            "guideline_section": "Section 7 (renewal clause)"
+            "guideline_section": "Section 4, clause viii"
         })
 
     # Determine eligibility
@@ -219,6 +232,12 @@ def check_eligibility(profile):
         "Meeting these criteria does not guarantee selection; scholarships are limited to 82,000 fresh slots a year and are awarded on merit, with 50% earmarked for girls and central reservation (15% SC, 7.5% ST, 27% OBC, 5% horizontal for benchmark disabilities).",
         "Apply only online on the National Scholarships Portal (www.scholarships.gov.in)."
     ]
+    if is_renewal:
+        notes.append(
+            "For renewals, the Class XII percentile is not re-checked, and the family income limit is "
+            "not re-checked because the guidelines (Section 4, clause v) require the income certificate "
+            "only for fresh applicants."
+        )
     notes.extend(amount_notes)
 
     return {
